@@ -11,20 +11,27 @@ public class Address implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String streetName;
 
+    @Column(nullable = false)
     private String number;
 
     private String complement;
 
+    @Column(nullable = false)
     private String neighbourhood;
 
+    @Column(nullable = false)
     private String city;
 
+    @Column(nullable = false)
     private String state;
 
+    @Column(nullable = false)
     private String country;
 
+    @Column(nullable = false)
     private String zipcode;
 
     private String latitude;
