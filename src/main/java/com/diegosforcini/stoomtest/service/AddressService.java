@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.net.www.http.HttpClient;
 
+import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,6 +59,7 @@ public class AddressService {
                 .orElseThrow(() -> new AddressNotFoundException("Address id " + id + " was not found!"));
     }
 
+    @Transactional
     public void deleteAddressById(Long id) {
         addressRepository.deleteAddressById(id);
     }
@@ -65,7 +67,6 @@ public class AddressService {
     private Address getLatLong(Address address) {
 
         try {
-
             String stringAddress = new StringBuilder(address.getStreetName())
                     .append("+").append(address.getNumber())
                     .append("+").append(address.getNeighbourhood())
@@ -86,10 +87,12 @@ public class AddressService {
             JSONTokener jsonTokener = new JSONTokener(br);
             JSONObject json = new JSONObject(jsonTokener);
 
-            System.out.println(json);
+//            StringBuilder sb = new StringBuilder();
+//            String line;
+//            while ((line = br.readLine()) != null) sb.append(line);
+//            JSONObject json = new JSONObject(sb.toString());
 
             String status = json.getString("status");
-
             if (status.equalsIgnoreCase("OK")) {
                 JSONArray results = json.getJSONArray("results");
 
