@@ -71,7 +71,8 @@ public class AddressService {
                     .append("+").append(address.getNumber())
                     .append("+").append(address.getNeighbourhood())
                     .append("+").append(address.getCity())
-                    .append("+").append(address.getState()).toString();
+                    .append("+").append(address.getState())
+                    .append("+").append(address.getZipcode()).toString();
             stringAddress = stringAddress.replaceAll(" ", "+");
 
             URL googleGeocodingUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + stringAddress + "&key=" + GOOGLE_API_KEY);
